@@ -1,7 +1,7 @@
 @echo off
 
 rem Window Title
-title WiFi Hotspot Creator
+title Batch Hotspot Creator
 
 rem Window Size
 mode con: cols=37 lines=13
