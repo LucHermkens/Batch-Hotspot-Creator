@@ -217,6 +217,9 @@ cd bin
 start decrypt_start.bat
 cd..
 
+:decryptText
+if exist password_decrypted goto decyptionDone
+
 cls
 echo.
 echo  ==============HOTSPOT==============
@@ -259,48 +262,10 @@ echo.
 echo.
 echo  ===================================
 ping 1.1.1.1 -n 1 -w 1000 >nul
-cls
-echo.
-echo  ==============HOTSPOT==============
-echo.
-echo.
-echo.
-echo        Waiting for decryption
-echo.
-echo.
-echo.
-echo.
-echo.
-echo  ===================================
-ping 1.1.1.1 -n 1 -w 1000 >nul
-cls
-echo.
-echo  ==============HOTSPOT==============
-echo.
-echo.
-echo.
-echo        Waiting for decryption.
-echo.
-echo.
-echo.
-echo.
-echo.
-echo  ===================================
-ping 1.1.1.1 -n 1 -w 1000 >nul
-cls
-echo.
-echo  ==============HOTSPOT==============
-echo.
-echo.
-echo.
-echo       Waiting for decryption..
-echo.
-echo.
-echo.
-echo.
-echo.
-echo  ===================================
-ping 1.1.1.1 -n 1 -w 1000 >nul
+
+goto decryptText
+
+:decyptionDone
 cls
 echo.
 echo  ==============HOTSPOT==============
@@ -316,8 +281,7 @@ echo.
 echo  ===================================
 ping 1.1.1.1 -n 1 -w 1000 >nul
 
-cd C:\Program Files
-cd Hotspot
+cd C:\Program Files\Hotspot
 
 set /p ssid=<ssid
 set /p password=<password_decrypted
