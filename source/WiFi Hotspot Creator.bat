@@ -145,7 +145,7 @@ setlocal
 cd /d %~dp0
 cls
 cd bin
-start encrypt.bat
+start encrypt.exe
 cd..
 
 cd C:\Program Files\Hotspot
@@ -217,7 +217,7 @@ setlocal
 cd /d %~dp0
 cls
 cd bin
-start decrypt.bat
+start decrypt.exe
 cd..
 
 :decryptText
