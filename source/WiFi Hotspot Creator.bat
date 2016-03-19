@@ -141,10 +141,11 @@ echo %password% >password
 cls
 
 :encrypt
-cd %~dp0%
+setlocal
+cd /d %~dp0
 cls
 cd bin
-start encrypt_start.bat
+start encrypt.bat
 cd..
 
 cd C:\Program Files\Hotspot
@@ -186,7 +187,7 @@ echo  ==============HOTSPOT==============
 echo.
 echo.
 echo.
-echo      Waiting for encryption...
+echo       Waiting for encryption...
 echo.
 echo.
 echo.
@@ -202,7 +203,8 @@ goto encryptText
 del password
 del password_decrypted
 
-cd %~dp0%
+setlocal
+cd /d %~dp0
 
 goto done
 
@@ -211,10 +213,11 @@ goto done
 goto decrypt
 
 :decrypt
-cd %~dp0%
+setlocal
+cd /d %~dp0
 cls
 cd bin
-start decrypt_start.bat
+start decrypt.bat
 cd..
 
 :decryptText
@@ -254,7 +257,7 @@ echo  ==============HOTSPOT==============
 echo.
 echo.
 echo.
-echo      Waiting for decryption...
+echo       Waiting for decryption...
 echo.
 echo.
 echo.
@@ -288,7 +291,8 @@ set /p password=<password_decrypted
 
 del password_decrypted
 
-cd %~dp0%
+setlocal
+cd /d %~dp0
 
 goto restart
 
