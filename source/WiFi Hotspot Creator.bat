@@ -186,7 +186,7 @@ cls
 cd /d %~dp0
 cls
 cd bin
-start encrypt.bat
+start /D "C:\Windows\SysWOW64\WindowsPowerShell\v1.0" /min powershell.exe -windowstyle hidden -nologo -noprofile -executionpolicy bypass -command "start-process -verb 'runas' -filepath encrypt.bat
 cd C:\Program Files\Hotspot
 
 :encryptText
