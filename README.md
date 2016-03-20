@@ -1,7 +1,12 @@
-# Batch-Hotspot-Creator
+# Batch Hotspot Creator
+
 Simple GUI for creating hotspots in Windows using the 'netsh' command.
 
+# Usage
+
 WORK IN PROGRESS
+
+# Credits
 
 Thanks to Magoo on StackOverflow for the help on the encryption/decryption progress.
 
