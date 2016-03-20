@@ -10,27 +10,15 @@ rem Window Color
 color fc
 
 :status
-netsh wlan show hostednetwork | find "Not" && goto hotspotOff
-goto hotspotOn
-pause >nul
+netsh wlan show hostednetwork | find "Not" && goto menu1
+goto menu2
 
-:hotspotOff
-set /A status= Welcome!    Hotspot = Inactive
-pause >nul
-goto menu
-
-
-:hotspotOn
-set /A status= Welcome!    Hotspot = Active
-pause >nul
-goto menu
-
-:menu
+:menu1
 cls
 echo.
 echo  ==============HOTSPOT==============
 echo.
-echo %status%
+echo  Welcome!         Hotspot = Inactive
 echo.
 echo    1. Create Hotspot
 echo    2. Stop Hotspot
@@ -47,7 +35,31 @@ if %errorlevel%==3 goto restartHotspot
 if %errorlevel%==2 goto stopHotspot
 if %errorlevel%==1 goto configureHotspot
 
-goto status
+goto menu1
+
+:menu2
+cls
+echo.
+echo  ==============HOTSPOT==============
+echo.
+echo  Welcome!           Hotspot = Active
+echo.
+echo    1. Create Hotspot
+echo    2. Stop Hotspot
+echo    3. Load Config ^&^ Restart Hotspot
+echo    4. Remove Files
+echo    5. Exit Program
+echo.
+echo  ===================================
+
+choice /n /c:12345
+if %errorlevel%==5 goto exit
+if %errorlevel%==4 goto removeFiles
+if %errorlevel%==3 goto restartHotspot
+if %errorlevel%==2 goto stopHotspot
+if %errorlevel%==1 goto configureHotspot
+
+goto menu2
 
 :configureHotspot
 rem Configures Hotspot
