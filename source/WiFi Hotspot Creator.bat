@@ -1,5 +1,20 @@
 @echo off
 
+>nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+
+if '%errorlevel%' NEQ '0' (
+goto UACPrompt
+) else ( goto gotAdmin )
+:UACPrompt
+echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+echo UAC.ShellExecute "%~s0", "", "", "runas", 1 >> "%temp%\getadmin.vbs"
+"%temp%\getadmin.vbs"
+exit /B
+:gotAdmin
+if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
+pushd "%CD%"
+CD /D "%~dp0"
+
 rem Window Title
 title Batch Hotspot Creator
 
@@ -167,13 +182,10 @@ echo %password% >password
 cls
 
 :encrypt
-setlocal
 cd /d %~dp0
 cls
 cd bin
-start encrypt.exe
-cd..
-
+start encrypt.bat
 cd C:\Program Files\Hotspot
 
 :encryptText
@@ -225,26 +237,22 @@ ping 1.1.1.1 -n 1 -w 1000 >nul
 goto encryptText
 
 :encyptionDone
-
 del password
 del password_decrypted
 
-setlocal
 cd /d %~dp0
 
 goto done
 
 :restartHotspot
-
 goto decrypt
 
 :decrypt
-setlocal
 cd /d %~dp0
 cls
 cd bin
-start decrypt.exe
-cd..
+start decrypt.bat
+cd C:\Program Files\Hotspot
 
 :decryptText
 if exist password_decrypted goto decyptionDone
@@ -317,7 +325,6 @@ set /p password=<password_decrypted
 
 del password_decrypted
 
-setlocal
 cd /d %~dp0
 
 goto restart
@@ -458,8 +465,7 @@ echo.
 echo  ===================================
 ping 1.1.1.1 -n 1 -w 1000 >nul
 
-cd C:\Program Files
-cd Hotspot
+cd C:\Program Files\Hotspot
 cls
 del ssid
 cls
