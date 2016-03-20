@@ -1,7 +1,6 @@
-@ECHO OFF
+@echo off
 
-cd C:\Program Files
-cd Hotspot
+cd C:\Program Files\Hotspot
 
 SET    abet=abcdefghijklmnopqrstuvwxyz!@#-/\ .0123456789
 SET cipher1=8p#j4 9z\6w.ae@0u2r5o!xk-cf1b3g7hmqil/sntdvy
