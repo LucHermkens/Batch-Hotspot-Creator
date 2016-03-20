@@ -9,14 +9,28 @@ mode con: cols=37 lines=13
 rem Window Color
 color fc
 
-:menu
-rem Main Menu
+:status
+netsh wlan show hostednetwork | find "Not" && goto hotspotOff
+goto hotspotOn
+pause >nul
 
+:hotspotOff
+set /A status= Welcome!    Hotspot = Inactive
+pause >nul
+goto menu
+
+
+:hotspotOn
+set /A status= Welcome!    Hotspot = Active
+pause >nul
+goto menu
+
+:menu
 cls
 echo.
 echo  ==============HOTSPOT==============
 echo.
-echo  Welcome!
+echo %status%
 echo.
 echo    1. Create Hotspot
 echo    2. Stop Hotspot
@@ -33,7 +47,7 @@ if %errorlevel%==3 goto restartHotspot
 if %errorlevel%==2 goto stopHotspot
 if %errorlevel%==1 goto configureHotspot
 
-goto menu
+goto status
 
 :configureHotspot
 rem Configures Hotspot
@@ -412,7 +426,7 @@ echo  ===================================
 
 choice /n /c:12
 if %errorlevel%==2 goto exit
-if %errorlevel%==1 goto menu
+if %errorlevel%==1 goto status
 
 goto exit
 
@@ -452,7 +466,7 @@ goto done
 :exit
 cls
 echo.
-echo  ==============FLASHER==============
+echo  ==============HOTSPOT==============
 echo.
 echo.
 echo               EXITING...
